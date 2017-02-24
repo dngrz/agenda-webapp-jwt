@@ -1,0 +1,33 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "tema",
+            "otherEntityName": "temaAgenda",
+            "otherEntityField": "archivo"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "archivo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "fechaAdjunto",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "url",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170224195434",
+    "entityTableName": "texto_sustitutorio",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl"
+}

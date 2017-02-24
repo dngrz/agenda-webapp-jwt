@@ -1,0 +1,74 @@
+<div>
+    <h2>Tema Agenda</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="tema-agenda.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span >
+                        Create new Tema Agenda
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="titulo"><span>Titulo</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="numero"><span>Numero</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="contenido"><span>Contenido</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="url"><span>Url</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="temaActivo"><span>Tema Activo</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="estadoTema"><span>Estado Tema</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="agenda.nombre"><span>Agenda</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="temaAgenda in vm.temaAgenda track by temaAgenda.id">
+                    <td><a ui-sref="tema-agenda-detail({id:temaAgenda.id})">{{temaAgenda.id}}</a></td>
+                    <td>{{temaAgenda.titulo}}</td>
+                    <td>{{temaAgenda.numero}}</td>
+                    <td>{{temaAgenda.contenido}}</td>
+                    <td>{{temaAgenda.url}}</td>
+                    <td>{{temaAgenda.temaActivo}}</td>
+                    <td>{{temaAgenda.estadoTema}}</td>
+                    <td>
+                        <a ui-sref="agenda-detail({id:temaAgenda.agenda.id})">{{temaAgenda.agenda.nombre}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="tema-agenda-detail({id:temaAgenda.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="tema-agenda.edit({id:temaAgenda.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="tema-agenda.delete({id:temaAgenda.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+        <uib-pagination class="pagination-sm" total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+    </div>
+</div>

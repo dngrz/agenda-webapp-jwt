@@ -1,0 +1,35 @@
+
+<div>
+    <h2><span>Texto Sustitutorio</span> {{vm.textoSustitutorio.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row jh-entity-details">
+        <dt><span>Archivo</span></dt>
+        <dd>
+            <span>{{vm.textoSustitutorio.archivo}}</span>
+        </dd>
+        <dt><span>Fecha Adjunto</span></dt>
+        <dd>
+            <span>{{vm.textoSustitutorio.fechaAdjunto | date:'medium'}}</span>
+        </dd>
+        <dt><span>Url</span></dt>
+        <dd>
+            <span>{{vm.textoSustitutorio.url}}</span>
+        </dd>
+        <dt><span>Tema</span></dt>
+        <dd>
+            <a ui-sref="tema-agenda-detail({id:vm.textoSustitutorio.tema.id})">{{vm.textoSustitutorio.tema.archivo}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="texto-sustitutorio-detail.edit({id:vm.textoSustitutorio.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down"> Edit</span>
+    </button>
+</div>

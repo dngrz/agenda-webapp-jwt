@@ -1,0 +1,87 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myAgendaLabel">Create or edit a Agenda</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.agenda.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.agenda.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_nombre">Nombre</label>
+            <input type="text" class="form-control" name="nombre" id="field_nombre"
+                    ng-model="vm.agenda.nombre"
+                    required ng-minlength="3"/>
+            <div ng-show="editForm.nombre.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.nombre.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.nombre.$error.minlength" translate-value-min="3">
+                    This field is required to be at least 3 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_fecSesion">Fec Sesion</label>
+                <div class="input-group">
+                    <input id="field_fecSesion" type="text" class="form-control" name="fecSesion" datetime-picker="{{dateformat}}" ng-model="vm.agenda.fecSesion" is-open="vm.datePickerOpenStatus.fecSesion"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('fecSesion')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_legislatura">Legislatura</label>
+            <select class="form-control" name="legislatura" ng-model="vm.agenda.legislatura" id="field_legislatura">
+                <option value="PRIMERA">PRIMERA</option>
+                <option value="SEGUNDA">SEGUNDA</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_tipoLegislatura">Tipo Legislatura</label>
+            <select class="form-control" name="tipoLegislatura" ng-model="vm.agenda.tipoLegislatura" id="field_tipoLegislatura">
+                <option value="ORDINARIA">ORDINARIA</option>
+                <option value="EXTRAORDINARIA">EXTRAORDINARIA</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_indPublicado">Ind Publicado</label>
+            <select class="form-control" name="indPublicado" ng-model="vm.agenda.indPublicado" id="field_indPublicado">
+                <option value="PUBLICADO">PUBLICADO</option>
+                <option value="NO_PUBLICADO" data-translate="agendaApp.IndicadorPublicado.NO_PUBLICADO">NO_PUBLICADO</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_estadoAgenda">Estado Agenda</label>
+            <select class="form-control" name="estadoAgenda" ng-model="vm.agenda.estadoAgenda" id="field_estadoAgenda">
+                <option value="PENDIENTE">PENDIENTE</option>
+                <option value="EN_SESION" data-translate="agendaApp.EstadoAgenda.EN_SESION">EN_SESION</option>
+                <option value="FINALIZADO">FINALIZADO</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="field_user">User</label>
+            <select class="form-control" id="field_user" name="user" ng-model="vm.agenda.user" ng-options="user as user.login for user in vm.users track by user.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

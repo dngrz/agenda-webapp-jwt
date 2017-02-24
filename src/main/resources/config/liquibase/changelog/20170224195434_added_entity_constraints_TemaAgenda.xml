@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity TemaAgenda.
+    -->
+    <changeSet id="20170224195434-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="tema_agenda_id"
+                                 baseTableName="tema_agenda_seccion"
+                                 constraintName="fk_tema_agenda_seccion_tema_agenda_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tema_agenda"/>
+        <addForeignKeyConstraint baseColumnNames="seccions_id"
+                                 baseTableName="tema_agenda_seccion"
+                                 constraintName="fk_tema_agenda_seccion_seccions_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="seccion"/>
+        
+        <addForeignKeyConstraint baseColumnNames="tema_agenda_id"
+                                 baseTableName="tema_agenda_comision"
+                                 constraintName="fk_tema_agenda_comision_tema_agenda_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tema_agenda"/>
+        <addForeignKeyConstraint baseColumnNames="comisions_id"
+                                 baseTableName="tema_agenda_comision"
+                                 constraintName="fk_tema_agenda_comision_comisions_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="comision"/>
+        
+        <addForeignKeyConstraint baseColumnNames="agenda_id"
+                                 baseTableName="tema_agenda"
+                                 constraintName="fk_tema_agenda_agenda_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="agenda"/>
+
+    </changeSet>
+</databaseChangeLog>

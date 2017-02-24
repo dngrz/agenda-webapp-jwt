@@ -1,0 +1,92 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myTemaAgendaLabel">Create or edit a Tema Agenda</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.temaAgenda.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.temaAgenda.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_titulo">Titulo</label>
+            <input type="text" class="form-control" name="titulo" id="field_titulo"
+                    ng-model="vm.temaAgenda.titulo"
+                    required/>
+            <div ng-show="editForm.titulo.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.titulo.$error.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_numero">Numero</label>
+            <input type="number" class="form-control" name="numero" id="field_numero"
+                    ng-model="vm.temaAgenda.numero"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_contenido">Contenido</label>
+            <input type="text" class="form-control" name="contenido" id="field_contenido"
+                    ng-model="vm.temaAgenda.contenido"
+                    required/>
+            <div ng-show="editForm.contenido.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.contenido.$error.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_url">Url</label>
+            <input type="text" class="form-control" name="url" id="field_url"
+                    ng-model="vm.temaAgenda.url"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_temaActivo">Tema Activo</label>
+            <select class="form-control" name="temaActivo" ng-model="vm.temaAgenda.temaActivo" id="field_temaActivo">
+                <option value="ACTIVO">ACTIVO</option>
+                <option value="INACTIVO">INACTIVO</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_estadoTema">Estado Tema</label>
+            <select class="form-control" name="estadoTema" ng-model="vm.temaAgenda.estadoTema" id="field_estadoTema">
+                <option value="PENDIENTE">PENDIENTE</option>
+                <option value="ACTIVO">ACTIVO</option>
+                <option value="DEBATIDO">DEBATIDO</option>
+                <option value="CUARTO_INTERMEDIO" data-translate="agendaApp.EstadoTema.CUARTO_INTERMEDIO">CUARTO_INTERMEDIO</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="field_seccion">Seccion</label>
+            <select class="form-control" id="field_seccion" multiple name="seccion" ng-model="vm.temaAgenda.seccions" ng-options="seccion as seccion.id for seccion in vm.seccions track by seccion.id"></select>
+        </div>
+        <div class="form-group">
+            <label for="field_comision">Comision</label>
+            <select class="form-control" id="field_comision" multiple name="comision" ng-model="vm.temaAgenda.comisions" ng-options="comision as comision.name for comision in vm.comisions track by comision.id"></select>
+        </div>
+        <div class="form-group">
+            <label for="field_agenda">Agenda</label>
+            <select class="form-control" id="field_agenda" name="agenda" ng-model="vm.temaAgenda.agenda" ng-options="agenda as agenda.nombre for agenda in vm.agenda track by agenda.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

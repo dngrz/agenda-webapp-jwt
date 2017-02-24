@@ -1,0 +1,47 @@
+
+<div>
+    <h2><span>Agenda</span> {{vm.agenda.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row jh-entity-details">
+        <dt><span>Nombre</span></dt>
+        <dd>
+            <span>{{vm.agenda.nombre}}</span>
+        </dd>
+        <dt><span>Fec Sesion</span></dt>
+        <dd>
+            <span>{{vm.agenda.fecSesion | date:'medium'}}</span>
+        </dd>
+        <dt><span>Legislatura</span></dt>
+        <dd>
+            <span>{{vm.agenda.legislatura}}</span>
+        </dd>
+        <dt><span>Tipo Legislatura</span></dt>
+        <dd>
+            <span>{{vm.agenda.tipoLegislatura}}</span>
+        </dd>
+        <dt><span>Ind Publicado</span></dt>
+        <dd>
+            <span>{{vm.agenda.indPublicado}}</span>
+        </dd>
+        <dt><span>Estado Agenda</span></dt>
+        <dd>
+            <span>{{vm.agenda.estadoAgenda}}</span>
+        </dd>
+        <dt><span>User</span></dt>
+        <dd>
+            {{vm.agenda.user.login}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="agenda-detail.edit({id:vm.agenda.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down"> Edit</span>
+    </button>
+</div>

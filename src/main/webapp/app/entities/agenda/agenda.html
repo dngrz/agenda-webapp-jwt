@@ -1,0 +1,74 @@
+<div>
+    <h2>Agenda</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="agenda.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span >
+                        Create new Agenda
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="nombre"><span>Nombre</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="fecSesion"><span>Fec Sesion</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="legislatura"><span>Legislatura</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="tipoLegislatura"><span>Tipo Legislatura</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="indPublicado"><span>Ind Publicado</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="estadoAgenda"><span>Estado Agenda</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="user.login"><span>User</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="agenda in vm.agenda track by agenda.id">
+                    <td><a ui-sref="agenda-detail({id:agenda.id})">{{agenda.id}}</a></td>
+                    <td>{{agenda.nombre}}</td>
+                    <td>{{agenda.fecSesion | date:'medium'}}</td>
+                    <td>{{agenda.legislatura}}</td>
+                    <td>{{agenda.tipoLegislatura}}</td>
+                    <td>{{agenda.indPublicado}}</td>
+                    <td>{{agenda.estadoAgenda}}</td>
+                    <td>
+                        {{agenda.user.login}}
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="agenda-detail({id:agenda.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="agenda.edit({id:agenda.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="agenda.delete({id:agenda.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+        <uib-pagination class="pagination-sm" total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+    </div>
+</div>

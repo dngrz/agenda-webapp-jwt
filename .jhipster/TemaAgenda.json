@@ -1,0 +1,66 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "seccion",
+            "relationshipName": "seccion",
+            "otherEntityName": "seccion",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "temaAgenda",
+            "relationshipName": "comision",
+            "otherEntityName": "comision",
+            "otherEntityField": "name",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "agenda",
+            "otherEntityName": "agenda",
+            "otherEntityField": "nombre"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "titulo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "numero",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "contenido",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "url",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "temaActivo",
+            "fieldType": "IndicadorTema",
+            "fieldValues": "ACTIVO,INACTIVO"
+        },
+        {
+            "fieldName": "estadoTema",
+            "fieldType": "EstadoTema",
+            "fieldValues": "PENDIENTE,ACTIVO,DEBATIDO,CUARTO_INTERMEDIO"
+        }
+    ],
+    "changelogDate": "20170224195434",
+    "entityTableName": "tema_agenda",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl"
+}

@@ -1,0 +1,83 @@
+enum EstadoAgenda {
+    PENDIENTE, EN_SESION, FINALIZADO
+}
+
+enum IndicadorPublicado {
+    PUBLICADO, NO_PUBLICADO
+}
+
+enum OrdenLegislatura {
+   PRIMERA, SEGUNDA
+}
+
+enum TipoLegislatura {
+   ORDINARIA, EXTRAORDINARIA
+}
+
+enum IndicadorTema {
+    ACTIVO, INACTIVO
+}
+
+entity Agenda {
+  nombre String required minlength(3),
+  fecSesion ZonedDateTime,
+  legislatura OrdenLegislatura,
+  tipoLegislatura TipoLegislatura,
+  indPublicado IndicadorPublicado,
+  estadoAgenda EstadoAgenda
+}
+
+
+entity Comision {
+  name String required
+}
+
+enum EstadoTema {
+    PENDIENTE, ACTIVO, DEBATIDO, CUARTO_INTERMEDIO
+}
+
+entity TemaAgenda {
+  titulo String required,
+  numero  Integer
+  contenido String required,
+  url String,
+  temaActivo IndicadorTema, 
+  estadoTema  EstadoTema    
+}
+
+entity Seccion {
+  subtitulo String required minlength(3),
+}
+
+entity TextoSustitutorio {
+  archivo String required,
+  fechaAdjunto  ZonedDateTime,
+  url String
+}
+
+relationship ManyToOne {
+  Agenda{ user(login) } to User
+}
+
+relationship ManyToOne {
+  TextoSustitutorio{ tema(archivo) } to TemaAgenda
+}
+
+
+relationship ManyToMany {
+  TemaAgenda{ seccion } to Seccion{ seccion(subtitulo) }
+}
+
+relationship OneToMany {
+  Agenda{ temaAgendas } to TemaAgenda{ agenda(nombre) }
+}
+
+relationship ManyToMany {
+  TemaAgenda{ comision(name) } to Comision{ temaAgenda }
+}
+
+paginate Comision with infinite-scroll
+paginate Agenda, TemaAgenda with pagination
+
+service all with serviceImpl
+

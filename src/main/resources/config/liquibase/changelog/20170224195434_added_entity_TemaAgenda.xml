@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+
+    <property name="now" value="GETDATE()" dbms="mssql"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+    <!--
+        Added the entity TemaAgenda.
+    -->
+    <changeSet id="20170224195434-1" author="jhipster">
+        <createTable tableName="tema_agenda">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="titulo" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="numero" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="contenido" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="url" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="tema_activo" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="estado_tema" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="agenda_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+        
+        <createTable tableName="tema_agenda_seccion">
+            <column name="seccions_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tema_agenda_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="tema_agenda_id, seccions_id" tableName="tema_agenda_seccion"/>
+        
+        <createTable tableName="tema_agenda_comision">
+            <column name="comisions_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tema_agenda_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="tema_agenda_id, comisions_id" tableName="tema_agenda_comision"/>
+        
+    </changeSet>
+</databaseChangeLog>

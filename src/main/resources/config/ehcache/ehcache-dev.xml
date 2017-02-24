@@ -20,5 +20,25 @@
 
     <cache alias="pe.gob.congreso.didp.agenda.domain.User.persistentTokens" uses-template="simple"/>
 
+    <cache alias="pe.gob.congreso.didp.agenda.domain.Agenda" uses-template="simple"/>
+
+    <cache alias="pe.gob.congreso.didp.agenda.domain.Agenda.temaAgendas" uses-template="simple"/>
+
+    <cache alias="pe.gob.congreso.didp.agenda.domain.Comision" uses-template="simple"/>
+
+    <cache alias="pe.gob.congreso.didp.agenda.domain.Comision.temaAgenda" uses-template="simple"/>
+
+    <cache alias="pe.gob.congreso.didp.agenda.domain.Seccion" uses-template="simple"/>
+
+    <cache alias="pe.gob.congreso.didp.agenda.domain.Seccion.seccions" uses-template="simple"/>
+
+    <cache alias="pe.gob.congreso.didp.agenda.domain.TemaAgenda" uses-template="simple"/>
+
+    <cache alias="pe.gob.congreso.didp.agenda.domain.TemaAgenda.seccions" uses-template="simple"/>
+
+    <cache alias="pe.gob.congreso.didp.agenda.domain.TemaAgenda.comisions" uses-template="simple"/>
+
+    <cache alias="pe.gob.congreso.didp.agenda.domain.TextoSustitutorio" uses-template="simple"/>
+
     <!-- jhipster-needle-ehcache-add-entry -->
 </config>

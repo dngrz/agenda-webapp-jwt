@@ -1,0 +1,59 @@
+
+<div>
+    <h2><span>Tema Agenda</span> {{vm.temaAgenda.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row jh-entity-details">
+        <dt><span>Titulo</span></dt>
+        <dd>
+            <span>{{vm.temaAgenda.titulo}}</span>
+        </dd>
+        <dt><span>Numero</span></dt>
+        <dd>
+            <span>{{vm.temaAgenda.numero}}</span>
+        </dd>
+        <dt><span>Contenido</span></dt>
+        <dd>
+            <span>{{vm.temaAgenda.contenido}}</span>
+        </dd>
+        <dt><span>Url</span></dt>
+        <dd>
+            <span>{{vm.temaAgenda.url}}</span>
+        </dd>
+        <dt><span>Tema Activo</span></dt>
+        <dd>
+            <span>{{vm.temaAgenda.temaActivo}}</span>
+        </dd>
+        <dt><span>Estado Tema</span></dt>
+        <dd>
+            <span>{{vm.temaAgenda.estadoTema}}</span>
+        </dd>
+        <dt><span>Seccion</span></dt>
+        <dd>
+            <span ng-repeat="seccion in vm.temaAgenda.seccions">
+                <a ui-sref="seccion-detail({id: seccion.id})">{{seccion.id}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span>Comision</span></dt>
+        <dd>
+            <span ng-repeat="comision in vm.temaAgenda.comisions">
+                <a ui-sref="comision-detail({id: comision.id})">{{comision.name}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span>Agenda</span></dt>
+        <dd>
+            <a ui-sref="agenda-detail({id:vm.temaAgenda.agenda.id})">{{vm.temaAgenda.agenda.nombre}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="tema-agenda-detail.edit({id:vm.temaAgenda.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down"> Edit</span>
+    </button>
+</div>
